@@ -23,6 +23,11 @@ const getParams = (req) => {
   return { ...req.query, ...req.body };
 };
 
+
+const langCodeMap = {
+ 'zh-CN':"zh-Hans"
+}
+
 /**
  * 翻译API端点
  * 支持GET和POST
@@ -36,6 +41,9 @@ app.route('/translate')
     try {
       const { text, from = 'auto-detect', to = 'en' } = getParams(req);
       
+      from = langCodeMap[from] || from;
+        to = langCodeMap[to] || to;
+
       if (!text) {
         return res.status(400).json({ error: '请提供要翻译的文本' });
       }
@@ -78,11 +86,10 @@ app.route('/translate')
  */
 app.post('/translate/batch', async (req, res) => {
   try {
-    const {  from = 'auto-detect',  } = req.body;
-    var to = req.body.to || 'zh-Hans'
-    if(to=='zh-CN'){
-        to='zh-Hans'
-    }
+    var  { to ="'zh-Hans'",  from = 'auto-detect',  } = req.body;
+    from = langCodeMap[from] || from;
+    to = langCodeMap[to] || to;
+
     
     var texts = req.body.texts;
     
