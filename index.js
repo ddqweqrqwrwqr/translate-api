@@ -86,7 +86,7 @@ app.route('/translate')
  */
 app.post('/translate/batch', async (req, res) => {
   try {
-    var  { to ="'zh-Hans'",  from = 'auto-detect',  } = req.body;
+    var  { to ="zh-Hans",  from = 'auto-detect',  } = req.body;
     from = langCodeMap[from] || from;
     to = langCodeMap[to] || to;
 
