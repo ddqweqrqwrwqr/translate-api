@@ -84,6 +84,7 @@ app.post('/translate/batch', async (req, res) => {
         to='zh-Hans'
     }
     
+    
     var texts = req.body.texts;
     
     console.log('body ',typeof texts,JSON.stringify(req.body));
