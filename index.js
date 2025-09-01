@@ -67,7 +67,7 @@ app.route('/translate')
 
 
 
-  
+
 /**
  * 批量翻译API端点
  * 仅支持POST（更适合处理数组和长文本）
@@ -88,8 +88,8 @@ app.post('/translate/batch', async (req, res) => {
     
     console.log('body ',typeof texts,JSON.stringify(req.body));
     if(typeof texts=='string'){
-    texts = JSON.parse(texts);    
-    console.log(texts);
+        texts = JSON.parse(texts);    
+        console.log(texts);
     }
     
     
