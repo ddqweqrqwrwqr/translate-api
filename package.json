@@ -1,4 +1,6 @@
 {
+  "name": "translate-api",
+  "version": "1.0",
   "scripts": {
     "start": "node index.js"
   },
