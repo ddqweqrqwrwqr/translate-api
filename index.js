@@ -40,7 +40,7 @@ app.route('/translate')
         return res.status(400).json({ error: '请提供要翻译的文本' });
       }
       
-      const result = await translate(text, from, to, true);
+      const result = await translate(text, from, to, false);
       res.json(result);
     } catch (error) {
       console.error('翻译错误:', error);
@@ -55,7 +55,7 @@ app.route('/translate')
         return res.status(400).json({ error: '请提供要翻译的文本' });
       }
       
-      const result = await translate(text, from, to, true);
+      const result = await translate(text, from, to, false);
       res.json(result);
     } catch (error) {
       console.error('翻译错误:', error);
@@ -73,7 +73,20 @@ app.route('/translate')
  */
 app.post('/translate/batch', async (req, res) => {
   try {
-    const { texts, from = 'auto-detect', to = 'en' } = req.body;
+    const {  from = 'auto-detect',  } = req.body;
+    var to = req.body.to || 'zh-Hans'
+    if(to=='zh-CN'){
+        to='zh-Hans'
+    }
+    
+    var texts = req.body.texts;
+    
+    console.log('body ',typeof texts,JSON.stringify(req.body));
+    if(typeof texts=='string'){
+    texts = JSON.parse(texts);    
+    console.log(texts);
+    }
+    
     
     // 验证输入
     if (!texts || !Array.isArray(texts) || texts.length === 0) {
@@ -89,7 +102,7 @@ app.post('/translate/batch', async (req, res) => {
     const results = await Promise.all(
       texts.map(async (text, index) => {
         try {
-          const result = await translate(text, from, to, true);
+          const result = await translate(text, from, to, false);
           return {
             index,
             original: text,
