@@ -25,7 +25,9 @@ const getParams = (req) => {
 
 
 const langCodeMap = {
- 'zh-CN':"zh-Hans"
+ 'zh-CN':"zh-Hans",
+ "ru_RU": "ru",
+ 
 }
 
 /**
