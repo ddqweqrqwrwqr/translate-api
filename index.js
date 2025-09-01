@@ -1,5 +1,5 @@
 const express = require('express');
-const { translate, detect, getLanguages } = require('bing-translate-api');
+const { translate, detect,lang, getLanguages } = require('bing-translate-api');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -163,8 +163,9 @@ app.route('/detect')
 app.route('/languages')
   .get(async (req, res) => {
     try {
-      const languages = await getLanguages();
-      res.json(languages);
+        
+      //const languages = await getLanguages();
+      res.json(lang.LANGS);
     } catch (error) {
       console.error('获取语言列表错误:', error);
       res.status(500).json({ error: '获取语言列表出错', details: error.message });
@@ -172,8 +173,9 @@ app.route('/languages')
   })
   .post(async (req, res) => {
     try {
-      const languages = await getLanguages();
-      res.json(languages);
+      //const languages = await getLanguages();
+      //res.json(languages);
+      res.json(lang.LANGS);
     } catch (error) {
       console.error('获取语言列表错误:', error);
       res.status(500).json({ error: '获取语言列表出错', details: error.message });
