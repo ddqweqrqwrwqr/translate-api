@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "@vitalets/google-translate-api": "^9.2.1",
     "bing-translate-api": "^4.1.0",
