@@ -41,7 +41,7 @@ const langCodeMap = {
 app.route('/translate')
   .get(async (req, res) => {
     try {
-      const { text, from = 'auto-detect', to = 'en' } = getParams(req);
+      var { text, from = 'auto-detect', to = 'en' } = getParams(req);
       
       from = langCodeMap[from] || from;
         to = langCodeMap[to] || to;
@@ -59,8 +59,11 @@ app.route('/translate')
   })
   .post(async (req, res) => {
     try {
-      const { text, from = 'auto-detect', to = 'en' } = getParams(req);
-      
+      var  { text, from = 'auto-detect', to = 'en' } = getParams(req);
+       
+      from = langCodeMap[from] || from;
+        to = langCodeMap[to] || to;
+ 
       if (!text) {
         return res.status(400).json({ error: '请提供要翻译的文本' });
       }
